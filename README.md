@@ -1,38 +1,71 @@
-# Hack in Hills ’26 · Summit Pass
+# Hack in Hills ’26 · Builder Pass V2
 
-A personal pass generator for participants in the Top 500 of 10,000 teams at Hack in Hills ’26 (20–21 November, Manali, Himachal Pradesh).
-Each person uploads a photo and enters their name, role / college (optional), up to 3 domains (shown as pills) and a quote (optional). They pick one of four styles (Snow, Dusk, Topo, Sunrise), download a 1080×1350 PNG and copy a ready-made LinkedIn caption.
+A digital builder pass generator for everyone participating in the **Hack in Hills ’26** community (20–21 November 2026, Manali, Himachal Pradesh).
 
-- Static `index.html` + `bg/` (style photos) + `logos/`. No build step and no backend.
-- Photos never leave the device. Everything is drawn on a `<canvas>`.
-- Fonts come from Google Fonts: Montserrat, Manrope, Fraunces, DM Mono and Caveat.
-- If the quote is left empty, a random default is used. "↻ Another" picks a different one.
-- The sponsor bar on the pass has three parts: **Powered by** TinyFish (title sponsor), **Sponsored by** Google Developers (`logos/google-dev.png`, cropped from `google-developers-logo.png`), and **Organised by** with the combined organiser logo (`logos/oc-b.svg`).
-- The page fits on one screen with no scrolling, on phones and desktops. Its styling follows `design.md`: hairlines, pill inputs and a single black button. Behind the page, the selected style's photo is blurred and drifts slowly, with particles that change per style (snow, stars, dust, sun motes). Both stop if the visitor has reduced motion turned on.
+Built as a community identity card celebrating all builders: *"Built for the climb. 🏔️"*.
 
-## Deploy (Vercel)
+---
+
+## Features
+
+- **Community Builder Identity**: A personalized digital pass for all HIH '26 community members, builders, and dreamers.
+- **Client-Side Privacy**: Photos never leave the browser. Everything is rendered client-side on a `<canvas>` element (1080×1350 PNG export).
+- **Mountain Visual Design**:
+  - Snowy Himalayan mountain backgrounds (Snow, Dusk, Topo, Sunrise presets).
+  - Polaroid-style photo element with realistic tape overlay and handwritten *"Built for the climb."* caption.
+  - Stamped circular **HIH '26 BUILDER** seal with mountain peak emblem.
+  - Frosted glass info card shaped like a mountain ridge with summit flag.
+  - Full sponsor rail: **Powered by TinyFish**, **Sponsored by Google Developers**, and **Organised by OC** (Builderbase, Web3 India, Nexido).
+  - Subtle drifting background and ambient snowfall/ember particle canvas.
+- **Two Independent Social Caption Generators**:
+  - **Copy X Caption**: Strictly validated to 280 characters or fewer with platform handles (`@Tiny_Fish`, `@theBuilder_base`, `@Web3indiaHQ`, `@nexido_official`) and `#HackInHills #HIH26`.
+  - **Copy LinkedIn Caption**: Storytelling format with exact LinkedIn attribution (`Powered by @TinyFish. Organised by @Builderbase, @Web3India and @Nexido.`) and `#HackInHills #HIH26 #BuildInPublic`.
+- **Customizable Profile**:
+  - Name and optional role/college.
+  - Up to 3 domain/persona pills (`AI Builder`, `Web3 Native`, `Open Source Hacker`, `Full-Stack Builder`, `Design Engineer`, etc.).
+  - Builder quotes with one-click random shuffle.
+  - Photo pan/drag and zoom controls.
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm
+
+### Development
 ```bash
-cd manali-pass
-npx vercel --prod
+npm install
+npm run dev
 ```
-`.vercelignore` keeps the original `BG Images/` out of the deploy. The page loads the compressed copies in `bg/`.
-Serve it over http(s). If you open `index.html` straight from disk, the images don't load and the browser blocks the download.
-To test locally, run `python -m http.server 5173` inside this folder and open http://localhost:5173.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## Changing a background photo
-Replace `bg/<style>.jpg` (ice, dusk, topo, sunrise). Landscape works, and the photo is cropped to portrait. To change which part shows, set `fx` for that style in `const THEMES=`: 0 = left edge, 0.5 = centre, 1 = right edge.
+### Running Tests
+Automated unit tests verify X caption character limits (≤ 280), attribution handles, and community positioning:
+```bash
+npm test
+```
 
-## Where to edit things (search inside index.html)
-| What | Search for |
-|---|---|
-| Style colours (title, card, accent) | `const THEMES=` |
-| Default quotes | `const QUOTES=` |
-| Caption text | `function caption()` |
-| Title, coordinates, pill, handwritten note | `function title(` |
-| Polaroid size / tilt / "Manali bound!" | `PO=` and `function polaroid(` |
-| Top 500 stamp | `function stamp(` |
-| Info card (ridge shape, dates, base camp) | `const RIDGE=` and `function card(` |
-| Sponsor rail | `function rail(` |
-| Page background animation | `const FX=` (particles) and `.bgfx` / `[data-bg=` in the CSS |
-| Domain pills (max 3) | `function renderTags(` and `// domain pills` |
-| Download filename | `HackInHills26-` |
+### Production Build
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## Project Structure
+
+```
+├── bg/                   # Mountain background presets (ice, dusk, topo, sunrise)
+├── logos/                # Official sponsor and organizer logos
+├── src/
+│   ├── config.js         # Centralized brand copy, social handles, quotes, themes
+│   ├── captions.js       # X and LinkedIn caption generators & X character counter
+│   └── main.js           # Canvas rendering, photo handling, UI interactions
+├── test/
+│   └── captions.test.js  # Test suite for captions & Twitter character counting
+├── index.html            # Main web page & responsive layout
+└── package.json          # Dependencies & scripts
+```
