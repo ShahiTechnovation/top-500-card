@@ -1,0 +1,296 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hack in Hills ’26 · Summit Pass</title>
+<meta name="description" content="Top 500 of 10,000 teams. Make your Hack in Hills ’26 summit pass: 20–21 November, Manali, Himachal Pradesh.">
+<meta property="og:title" content="Hack in Hills ’26 · Summit Pass"><meta property="og:description" content="Top 500 of 10,000 teams. 20–21 November · Manali, Himachal Pradesh.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Mono:wght@500&family=Fraunces:ital,opsz,wght@1,9..144,400&family=Inter:wght@400;500&family=Manrope:wght@700;800&family=Montserrat:wght@800;900&family=Nunito:wght@600&display=swap">
+<style>
+:root{--canvas:#fff;--soft:#fafafa;--ink:#000;--charcoal:#525252;--body:#737373;--mute:#a3a3a3;--hair:#e5e5e5;--hair2:#d4d4d4;--focus:rgba(59,130,246,.5);color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--canvas);color:var(--ink);font:400 15px/1.45 Inter,ui-sans-serif,system-ui,sans-serif;-webkit-text-size-adjust:100%;overflow:hidden}
+[hidden]{display:none!important}
+svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:none;box-shadow:0 0 0 3px var(--focus)}
+.pill input:focus,.pill input:focus-visible{box-shadow:none;outline:none}
+:root{--veil:rgba(255,255,255,.45);--onbg:#000;--onbg-mute:#525252}
+[data-bg=ice]{--veil:rgba(255,255,255,.38)}
+[data-bg=dusk]{--veil:rgba(4,20,24,.45);--onbg:#fff;--onbg-mute:rgba(255,255,255,.78)}
+[data-bg=topo]{--veil:rgba(255,255,255,.5)}
+[data-bg=sunrise]{--veil:rgba(255,255,255,.42)}
+.bgfx{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#fff}
+.bgfx i{position:absolute;inset:-20%;background-size:cover;background-position:center;filter:blur(64px) saturate(1.3);opacity:0;transition:opacity 1.4s ease;animation:drift 30s ease-in-out infinite alternate;will-change:transform}
+.bgfx i.on{opacity:1}
+.bgfx::after{content:"";position:absolute;inset:0;background:var(--veil);transition:background 1.4s ease}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+@keyframes drift{from{transform:scale(1.06) translate3d(-2%,-1.5%,0) rotate(-2deg)}to{transform:scale(1.2) translate3d(2%,2%,0) rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.bgfx i{animation:none}#fx{display:none}}
+.side{display:contents}
+h1,.meta,.note,.zoom{transition:color .6s}
+h1{color:var(--onbg)}.meta,.note,.zoom{color:var(--onbg-mute)!important}
+.app{position:relative;z-index:1;height:100dvh;max-width:1120px;margin:0 auto;padding:16px;display:grid;gap:12px;grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"head" "stage" "form"}
+.head{grid-area:head;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+h1{white-space:nowrap;font:600 20px/1.2 Nunito,ui-rounded,"SF Pro Rounded",system-ui,sans-serif;margin:0}
+.meta{color:var(--body);font-size:13px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.stage{grid-area:stage;min-height:0;display:flex;align-items:center;justify-content:center}
+#c{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.6);box-shadow:0 24px 70px rgba(0,0,0,.22);touch-action:none;cursor:grab}
+form{grid-area:form;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px;align-items:center}
+.pill{display:flex;align-items:center;gap:10px;min-height:42px;padding:0 6px 0 16px;border:1px solid var(--hair);border-radius:999px;background:var(--canvas);color:var(--body)}
+.pill:focus-within{border-color:var(--ink);box-shadow:0 0 0 3px var(--focus)}
+.pill input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 16px Inter,ui-sans-serif,system-ui,sans-serif;color:var(--ink);padding:10px 0}
+.pill input::placeholder{color:var(--mute)}
+.tags{flex-wrap:wrap;row-gap:6px;padding-block:5px}
+.tag{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 6px 0 12px;border-radius:999px;background:var(--soft);border:1px solid var(--hair);color:var(--ink);font-size:13px;font-weight:500;white-space:nowrap}
+.tag button{display:grid;place-items:center;width:20px;height:20px;border:0;border-radius:999px;background:transparent;color:var(--body);padding:0}
+.tag button svg{width:14px;height:14px}
+.ibtn{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:999px;background:transparent;color:var(--body);flex:none}
+.ibtn:active{background:var(--soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 20px;border-radius:999px;font:500 14px Inter,ui-sans-serif,system-ui,sans-serif;white-space:nowrap}
+.btn.primary{background:var(--ink);color:#fff;border:0;flex:1}
+.btn.primary:active{background:#090909}
+.btn.secondary{background:var(--canvas);color:var(--ink);border:1px solid var(--hair2)}
+.btn.upload{flex:1;min-width:0;justify-content:flex-start;padding-left:16px;background:var(--soft);border:1px solid var(--hair);color:var(--ink)}
+.btn.upload span{overflow:hidden;text-overflow:ellipsis}
+.swatches{display:flex;gap:6px}
+.swatches button{width:34px;height:34px;border-radius:999px;border:1px solid var(--hair);padding:2px;background:var(--canvas)}
+.swatches button i{display:block;width:100%;height:100%;border-radius:999px;background-size:cover;background-position:center}
+.swatches button[aria-pressed=true]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.zoom{display:flex;align-items:center;gap:10px;color:var(--body);font-size:13px;padding:0 16px}
+.zoom input{flex:1;accent-color:var(--ink)}
+.note{margin:2px 0 0;font-size:12px;color:var(--body);text-align:center;min-height:1.4em}
+@media (min-width:860px){
+.app{max-width:none;padding:28px;gap:44px;grid-template-columns:minmax(0,calc((100dvh - 56px)*.8)) 380px;grid-template-rows:minmax(0,1fr);grid-template-areas:"stage side";justify-content:center;align-items:center}
+.stage{height:100%}
+.side{grid-area:side;display:flex;flex-direction:column;gap:22px;padding:28px;background:rgba(255,255,255,.8);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,.75);border-radius:20px}
+.side h1{color:var(--ink)}.side .meta,.side .note,.side .zoom{color:var(--body)!important}
+.head{flex-direction:column;align-items:flex-start;gap:4px}
+h1{font-size:30px}
+.meta{font-size:14px}
+form{gap:10px}
+}
+@media (max-width:420px){.ev{display:none}}
+@media (max-height:560px) and (max-width:859px){body{overflow:auto}.app{height:auto}.stage{height:60vh}}
+</style>
+</head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-img" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 2.5 9 2.5 12 0v-5"/></symbol>
+<symbol id="i-hash" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></symbol>
+<symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 7h4v4c0 3-1.5 5-4 6M15 7h4v4c0 3-1.5 5-4 6"/></symbol>
+<symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+<div class="bgfx" aria-hidden="true"><i id="bgA"></i><i id="bgB"></i></div><canvas id="fx" aria-hidden="true"></canvas>
+<main class="app">
+<aside class="side">
+<div class="head"><h1>Summit pass</h1><p class="meta"><span class="ev">Hack in Hills ’26 · </span>Manali · 20–21 Nov</p></div>
+<form id="f" autocomplete="off">
+<div class="row">
+<button type="button" class="btn upload" id="drop"><svg class="i"><use href="#i-img"/></svg><span id="dropT">Upload photo</span></button>
+<div class="swatches" id="theme" role="group" aria-label="Background">
+<button type="button" data-v="ice" aria-pressed="true" aria-label="Snow" title="Snow"><i style="background-image:url(bg/ice.jpg)"></i></button>
+<button type="button" data-v="dusk" aria-pressed="false" aria-label="Dusk" title="Dusk"><i style="background-image:url(bg/dusk.jpg)"></i></button>
+<button type="button" data-v="topo" aria-pressed="false" aria-label="Topo" title="Topo"><i style="background-image:url(bg/topo.jpg)"></i></button>
+<button type="button" data-v="sunrise" aria-pressed="false" aria-label="Sunrise" title="Sunrise"><i style="background-image:url(bg/sunrise.jpg)"></i></button>
+</div>
+</div>
+<input type="file" id="file" accept="image/*" hidden>
+<label class="zoom" id="zoomL" hidden>Zoom<input type="range" id="zoom" min="1" max="3" step="0.01" value="1"></label>
+<label class="pill"><svg class="i"><use href="#i-user"/></svg><input id="name" maxlength="26" placeholder="Your name" aria-label="Your name"></label>
+<label class="pill"><svg class="i"><use href="#i-cap"/></svg><input id="role" maxlength="48" placeholder="Role or college (optional)" aria-label="Role or college"></label>
+<div class="pill tags" id="tagBox"><svg class="i"><use href="#i-hash"/></svg><span id="tagList" style="display:contents"></span><input id="field" maxlength="24" list="fields" placeholder="Your domains (up to 3)" aria-label="Domains, up to 3"></div>
+<datalist id="fields"><option value="AI Agents"><option value="Web3"><option value="FinTech"><option value="HealthTech"><option value="Climate Tech"><option value="EdTech"><option value="Cybersecurity"><option value="Open Source"><option value="DevTools"><option value="Design"></datalist>
+<label class="pill"><svg class="i"><use href="#i-quote"/></svg><input id="quote" maxlength="56" aria-label="Your quote (optional)"><button type="button" class="ibtn" id="shuffle" aria-label="Another default quote" title="Another default quote"><svg class="i"><use href="#i-shuffle"/></svg></button></label>
+<div class="row">
+<button class="btn primary" type="submit"><svg class="i"><use href="#i-down"/></svg>Download pass</button>
+<button class="btn secondary" id="copy" type="button"><svg class="i"><use href="#i-copy"/></svg><span id="copyT">Copy caption</span></button>
+</div>
+<p class="note" id="status" aria-live="polite">Your photo stays on your device.</p>
+</form>
+</aside>
+<div class="stage"><canvas id="c" width="1080" height="1350" aria-label="Summit pass preview"></canvas></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const W=1080,H=1350,cv=$('c'),x=cv.getContext('2d');
+const QUOTES=['Every summit starts with git init.','Thin air, thick code.','I climb in commits.','Altitude is just another constraint.','Low oxygen, high output.','From base camp to production.','Ship it before the snow sets in.','The view is better after the bugs.'];
+const F={head:'Montserrat, system-ui, sans-serif',sans:'Manrope, system-ui, sans-serif',serif:'Fraunces, Georgia, serif',mono:'"DM Mono", ui-monospace, monospace',hand:'Caveat, cursive'};
+// top = text over the photo · wash = haze behind the title · fx = horizontal focus of the photo crop
+const THEMES={
+ice:{fx:.5,top:'#0E2236',wash:'rgba(255,255,255,.6)',num:'#2F74C9',cap:'#FFFFFF',card:'#F6F9FC',cardA:.84,ink:'#0E2236',mute:'#5B6B7E',acc:'#2F6FC4',edge:'rgba(255,255,255,.95)'},
+dusk:{fx:.5,top:'#06262A',wash:'rgba(150,240,225,.35)',num:'#E2522A',cap:'#9BE8DA',card:'#061A1D',cardA:.76,ink:'#EAF7F4',mute:'#8DB5B0',acc:'#FF8A4C',edge:'rgba(255,150,100,.8)'},
+topo:{fx:.5,top:'#FFFFFF',wash:'rgba(8,18,28,.6)',num:'#F2B06B',cap:'#22324A',card:'#F4EEE6',cardA:.86,ink:'#2B2420',mute:'#7A6E62',acc:'#B5562E',edge:'rgba(255,255,255,.9)'},
+sunrise:{fx:.42,top:'#13243B',wash:'rgba(255,255,255,.45)',num:'#D9632F',cap:'#FFFFFF',card:'#FFFDF6',cardA:.84,ink:'#1E2B1F',mute:'#66705F',acc:'#C2601F',edge:'rgba(255,255,255,.95)'}
+};
+const img={};
+for(const[k,f]of[['tinyfish','tinyfish-b.svg'],['oc','oc-b.svg'],['google','google-dev.png']]){const i=new Image();i.onload=draw;i.src='logos/'+f;img[k]=i}
+const bg={};for(const k in THEMES){const i=new Image();i.onload=draw;i.src=`bg/${k}.jpg`;bg[k]=i}
+const st={photo:null,zoom:1,ox:0,oy:0,theme:'ice',tags:[],quote:QUOTES[Math.random()*QUOTES.length|0]};
+// layout
+const LX=94,RX=986,PO={cx:520,cy:590,w:452,h:540,rot:-.035,m:20,mb:100},CARD={x:56,w:968,top:914,bot:1192},RAIL={y:1212,h:102};
+
+function rng(s){return()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function fit(t,font,size,max,min=18){let s=size;x.font=font.replace('S',s);while(x.measureText(t).width>max&&s>min){s-=2;x.font=font.replace('S',s)}return s}
+function spaced(t,X,Y,sp,align){const ch=[...t],w=ch.reduce((a,c)=>a+x.measureText(c).width,0)+sp*(ch.length-1);
+let cx=align==='right'?X-w:align==='center'?X-w/2:X;const a=x.textAlign;x.textAlign='left';for(const c of ch){x.fillText(c,cx,Y);cx+=x.measureText(c).width+sp}x.textAlign=a;return w}
+function clip1(t,max){if(x.measureText(t).width<=max)return t;while(t&&x.measureText(t+'…').width>max)t=t.slice(0,-1);return t.trimEnd()+'…'}
+function cover(im,fx){if(!im.complete||!im.naturalWidth)return false;const s=Math.max(W/im.naturalWidth,H/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;
+x.drawImage(im,Math.min(0,Math.max(W-w,W/2-w*fx)),(H-h)/2,w,h);return true}
+
+function title(T){
+const s=96,y1=150,y2=y1+86;x.fillStyle=T.top;x.font=`900 ${s}px ${F.head}`;x.textBaseline='alphabetic';
+let cx=LX-4;x.fillText('H',cx,y1);cx+=x.measureText('H').width+2;
+// the A is a snow-capped peak
+const wA=x.measureText('A').width,cap=s*.72,ax=cx,apx=ax+wA/2,apy=y1-cap*1.08;
+x.beginPath();x.moveTo(ax,y1);x.lineTo(apx,apy);x.lineTo(ax+wA,y1);x.closePath();x.moveTo(ax+wA*.36,y1);x.lineTo(apx,y1-cap*.32);x.lineTo(ax+wA*.64,y1);x.closePath();x.fill('evenodd');
+const hh=y1-apy;x.fillStyle=T.cap;x.beginPath();x.moveTo(apx,apy+4);x.lineTo(apx+wA*.19,apy+hh*.38);x.lineTo(apx+wA*.08,apy+hh*.31);x.lineTo(apx,apy+hh*.42);x.lineTo(apx-wA*.09,apy+hh*.3);x.lineTo(apx-wA*.19,apy+hh*.38);x.closePath();x.fill();
+x.fillStyle=T.top;cx+=wA+2;x.fillText('CK',cx,y1);const w1=cx+x.measureText('CK').width;
+x.fillText('IN HILLS',LX-4,y2);const w2=LX-4+x.measureText('IN HILLS').width;
+const nx=Math.max(w1,w2)+14;x.fillStyle=T.num;x.font=`900 126px ${F.head}`;x.fillText('’26',nx,y1+30);const ne=nx+x.measureText('’26').width;
+x.fillStyle=T.top;x.font=`500 18px ${F.mono}`;spaced('MANALI · HIMACHAL PRADESH',LX,y2+40,6);
+x.font=`500 20px ${F.mono}`;const pw=spaced('SUMMIT PASS',-9999,0,5)+52,px=RX+20-pw;x.strokeStyle=T.top;x.lineWidth=3;x.beginPath();x.roundRect(px,74,pw,54,27);x.stroke();
+x.textBaseline='middle';spaced('SUMMIT PASS',px+pw/2,102,5,'center');x.textBaseline='alphabetic';
+x.font=`500 18px ${F.mono}`;const cw=spaced('32.24°N  77.19°E',RX+10,166,2,'right');pin(RX+10-cw-22,160,T.top);
+x.save();x.translate(ne+26,232);x.rotate(-.22);x.fillStyle=T.top;x.font=`600 34px ${F.hand}`;
+['ideas','climb','higher.'].forEach((t,i)=>x.fillText(t,i*12,i*30));x.strokeStyle=T.top;x.lineWidth=2.5;x.lineCap='round';x.beginPath();x.moveTo(20,82);x.quadraticCurveTo(56,71,96,76);x.stroke();x.restore()}
+function pin(X,Y,c){x.strokeStyle=c;x.lineWidth=2.5;x.beginPath();x.arc(X,Y-4,7,Math.PI*.85,Math.PI*.15);x.lineTo(X,Y+10);x.closePath();x.stroke();x.beginPath();x.arc(X,Y-4,2.2,0,7);x.stroke()}
+
+function polaroid(){x.save();x.translate(PO.cx,PO.cy);x.rotate(PO.rot);const{w,h,m,mb}=PO,pw=w-2*m,ph=h-m-mb,px=-w/2+m,py=-h/2+m;
+x.shadowColor='rgba(0,0,0,.35)';x.shadowBlur=40;x.shadowOffsetY=18;x.fillStyle='#FDFCF8';x.beginPath();x.roundRect(-w/2,-h/2,w,h,8);x.fill();x.shadowColor='transparent';
+x.save();x.beginPath();x.rect(px,py,pw,ph);x.clip();const cx=px+pw/2,cy=py+ph/2;
+if(st.photo){const p=st.photo,s=Math.max(pw/p.width,ph/p.height)*st.zoom,dw=p.width*s,dh=p.height*s,mx=(dw-pw)/2,my=(dh-ph)/2;
+st.ox=Math.max(-mx,Math.min(mx,st.ox));st.oy=Math.max(-my,Math.min(my,st.oy));x.drawImage(p,cx-dw/2+st.ox,cy-dh/2+st.oy,dw,dh)}
+else{const g=x.createLinearGradient(0,py,0,py+ph);g.addColorStop(0,'#EDF1F5');g.addColorStop(1,'#D4DDE7');x.fillStyle=g;x.fillRect(px,py,pw,ph);
+x.strokeStyle='#8A97A6';x.lineWidth=5;x.beginPath();x.arc(cx,cy-40,52,0,7);x.stroke();x.beginPath();x.arc(cx,cy+110,100,Math.PI*1.12,Math.PI*1.88);x.stroke();
+x.fillStyle='#7A8796';x.font=`500 20px ${F.mono}`;spaced('ADD YOUR PHOTO',cx,cy+128,3,'center')}
+x.restore();
+x.fillStyle='#2A2A2A';x.font=`600 46px ${F.hand}`;x.textAlign='center';x.fillText('Manali bound!',0,h/2-mb/2+16);x.textAlign='left';
+// tape
+x.save();x.translate(-w/2+40,-h/2+4);x.rotate(-.55);x.fillStyle='rgba(236,224,188,.92)';x.fillRect(-64,-18,128,36);x.restore();
+x.restore()}
+
+function stamp(cx,cy,r,T){x.save();x.translate(cx,cy);x.rotate(.18);
+x.shadowColor='rgba(0,0,0,.25)';x.shadowBlur=18;x.shadowOffsetY=6;x.fillStyle=T.card;x.beginPath();x.arc(0,0,r,0,7);x.fill();x.shadowColor='transparent';
+x.strokeStyle=T.acc;x.fillStyle=T.acc;x.lineWidth=4;x.beginPath();x.arc(0,0,r-8,0,7);x.stroke();x.lineWidth=2;x.beginPath();x.arc(0,0,r-30,0,7);x.stroke();
+x.textAlign='center';x.textBaseline='middle';x.lineWidth=2.5;x.lineJoin='round';x.beginPath();x.moveTo(-20,-18);x.lineTo(-7,-34);x.lineTo(0,-26);x.lineTo(7,-32);x.lineTo(20,-18);x.stroke();
+x.font=`900 24px ${F.head}`;x.fillText('TOP 500',0,0);x.font=`500 12px ${F.mono}`;x.fillText('OF 10,000',0,21);
+const arc=(t,top)=>{x.font=`500 13px ${F.mono}`;const ch=[...t],ws=ch.map(c=>x.measureText(c).width+3),tot=ws.reduce((a,b)=>a+b,0),rr=r-19;let a=-tot/2/rr;
+ch.forEach((c,i)=>{const m=a+ws[i]/2/rr;x.save();x.rotate(top?m:-m);x.translate(0,top?-rr:rr);x.fillText(c,0,0);x.restore();a+=ws[i]/rr})};
+arc('HACK IN HILLS ’26',true);arc('QUALIFIED',false);x.restore()}
+
+// info card: frosted glass whose top edge is a mountain ridge
+const RIDGE=(()=>{const r=rng(31),pts=[];let n=0;for(let X=CARD.x;X<=CARD.x+CARD.w;X+=16){n+=(r()-.5)*14;n*=.86;pts.push([X,CARD.top+n-46*Math.exp(-(((X-870)/80)**2))-22*Math.exp(-(((X-640)/60)**2))])}return pts})();
+function cardPath(){const{x:L,w,bot}=CARD,Rr=28;x.beginPath();RIDGE.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.lineTo(L+w,bot-Rr);x.arcTo(L+w,bot,L+w-Rr,bot,Rr);x.lineTo(L+Rr,bot);x.arcTo(L,bot,L,bot-Rr,Rr);x.closePath()}
+function icon(k,X,Y,c){x.save();x.translate(X,Y);x.strokeStyle=c;x.fillStyle=c;x.lineWidth=3;x.lineJoin='round';x.lineCap='round';x.beginPath();
+if(k==='cal'){x.roundRect(0,4,40,36,7);x.moveTo(0,15);x.lineTo(40,15);x.moveTo(11,0);x.lineTo(11,8);x.moveTo(29,0);x.lineTo(29,8);x.stroke();for(let i=0;i<3;i++)for(let j=0;j<2;j++){x.beginPath();x.arc(10+i*10,24+j*8,2.3,0,7);x.fill()}}
+if(k==='mtn'){x.moveTo(0,38);x.lineTo(16,10);x.lineTo(26,25);x.lineTo(32,17);x.lineTo(44,38);x.closePath();x.moveTo(10,21);x.lineTo(16,25);x.lineTo(21,19);x.stroke()}
+x.restore()}
+function card(T){
+x.save();cardPath();x.clip();x.filter='blur(18px)';cover(bg[st.theme],T.fx);x.filter='none';x.globalAlpha=T.cardA;x.fillStyle=T.card;x.fillRect(0,CARD.top-120,W,400);x.globalAlpha=1;x.restore();
+x.strokeStyle=T.edge;x.lineWidth=3;x.beginPath();RIDGE.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.stroke();
+// summit flag
+const[fx,fy]=RIDGE.reduce((a,b)=>b[1]<a[1]?b:a);x.strokeStyle=T.ink;x.lineWidth=3;x.beginPath();x.moveTo(fx,fy);x.lineTo(fx,fy-50);x.stroke();
+x.fillStyle=T.acc;x.beginPath();x.moveTo(fx,fy-50);x.lineTo(fx+34,fy-39);x.lineTo(fx,fy-28);x.closePath();x.fill();
+const L=LX+6,CW=548;
+x.fillStyle=T.mute;x.font=`500 16px ${F.mono}`;spaced('PARTICIPANT · TOP 500',L,966,4);
+const name=($('name').value.trim()||'Your Name').toUpperCase();x.fillStyle=T.ink;fit(name,`900 Spx ${F.head}`,70,CW,38);x.fillText(name,L-3,1028);
+const role=$('role').value.trim();if(role){x.fillStyle=T.mute;x.font=`700 26px ${F.sans}`;x.fillText(clip1(role,CW),L,1066)}
+// domain pills: shrink together until all fit on one line
+const tags=st.tags.length?st.tags:['Your domain'],chY=role?1084:1050;let fs=24,pad=20,ws;
+for(;;){x.font=`800 ${fs}px ${F.head}`;ws=tags.map(t=>x.measureText(t).width+pad*2);if(ws.reduce((a,b)=>a+b,0)+10*(ws.length-1)<=CW||fs<=16)break;fs-=2;pad--}
+let tx=L;tags.forEach((t,i)=>{const w=Math.min(ws[i],L+CW-tx);if(w<70)return;x.globalAlpha=.14;x.fillStyle=T.acc;x.beginPath();x.roundRect(tx,chY,w,46,23);x.fill();x.globalAlpha=1;
+x.fillStyle=T.acc;x.fillText(clip1(t,w-pad*2),tx+pad,chY+23+fs*.36);tx+=w+10});
+// right column: when + where
+const vx=L+CW+26;x.strokeStyle=T.ink;x.globalAlpha=.15;x.lineWidth=2;x.beginPath();x.moveTo(vx,958);x.lineTo(vx,1124);x.stroke();x.globalAlpha=1;
+[['cal','DATES','20–21 NOV 2026',962],['mtn','BASE CAMP','MANALI · 2,050 M',1052]].forEach(([k,l,v,y])=>{icon(k,vx+26,y,T.ink);x.fillStyle=T.mute;x.font=`500 14px ${F.mono}`;spaced(l,vx+86,y+12,3.5);x.fillStyle=T.ink;x.font=`800 25px ${F.sans}`;x.fillText(v,vx+86,y+44)});
+const q=($('quote').value.trim()||st.quote).replace(/^["“]|["”]$/g,'');x.fillStyle=T.ink;x.font=`italic 400 31px ${F.serif}`;x.fillText(clip1(`“${q}”`,RX-L),L,1168)}
+
+function rail(){const{y,h}=RAIL,L=CARD.x,w=CARD.w;
+x.shadowColor='rgba(0,0,0,.18)';x.shadowBlur=24;x.shadowOffsetY=8;x.fillStyle='rgba(255,255,255,.97)';x.beginPath();x.roundRect(L,y,w,h,24);x.fill();x.shadowColor='transparent';
+// [label, logo, section width, logo box]
+let sx=L;[['POWERED BY','tinyfish',284,[206,46]],['SPONSORED BY','google',288,[214,48]],['ORGANISED BY','oc',396,[300,60]]].forEach(([t,k,sw,[mw,mh]],i)=>{const cx=sx+sw/2;
+if(i){x.strokeStyle='rgba(15,31,58,.12)';x.lineWidth=2;x.beginPath();x.moveTo(sx,y+20);x.lineTo(sx,y+h-20);x.stroke()}
+x.fillStyle='#6B7380';x.font=`500 13px ${F.mono}`;spaced(t,cx,y+28,3.5,'center');logo(k,cx,y+66,mw,mh);sx+=sw})}
+function logo(k,cx,cy,mw,mh){const im=img[k];if(!im.complete||!im.naturalWidth)return;const s=Math.min(mw/im.naturalWidth,mh/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;x.drawImage(im,cx-w/2,cy-h/2,w,h)}
+
+function draw(){
+const T=THEMES[st.theme];
+x.save();x.clearRect(0,0,W,H);
+if(!cover(bg[st.theme],T.fx)){x.fillStyle=T.card;x.fillRect(0,0,W,H)}
+const g=x.createLinearGradient(0,0,0,440);g.addColorStop(0,T.wash);g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,W,440);
+title(T);polaroid();stamp(PO.cx+PO.w/2+18,PO.cy-PO.h/2+70,90,T);card(T);rail();
+x.restore()}
+
+// photo input
+const drop=$('drop'),file=$('file');
+drop.onclick=()=>file.click();
+['dragover','dragenter'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('on')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,()=>drop.classList.remove('on')));
+drop.addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f)load(f)});
+file.onchange=()=>{if(file.files[0])load(file.files[0])};
+function load(f){if(!f.type.startsWith('image/')){$('status').textContent='That file isn’t an image.';return}
+const i=new Image();i.onload=()=>{st.photo=i;st.zoom=1;st.ox=st.oy=0;$('zoom').value=1;$('zoomL').hidden=false;$('status').textContent='Drag the photo on the pass to move it.';$('dropT').textContent='Change photo';draw()};
+i.onerror=()=>{$('status').textContent='Couldn’t read that image. Try a JPG or PNG.'};i.src=URL.createObjectURL(f)}
+$('zoom').oninput=e=>{st.zoom=+e.target.value;draw()};
+let drag=null;
+cv.addEventListener('pointerdown',e=>{if(!st.photo)return;drag={x:e.clientX,y:e.clientY,ox:st.ox,oy:st.oy};cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'});
+cv.addEventListener('pointermove',e=>{if(!drag)return;const k=W/cv.getBoundingClientRect().width;st.ox=drag.ox+(e.clientX-drag.x)*k;st.oy=drag.oy+(e.clientY-drag.y)*k;draw()});
+['pointerup','pointercancel'].forEach(ev=>cv.addEventListener(ev,()=>{drag=null;cv.style.cursor='grab'}));
+document.querySelectorAll('#theme button').forEach(b=>b.onclick=()=>{st.theme=b.dataset.v;document.querySelectorAll('#theme button').forEach(o=>o.setAttribute('aria-pressed',o===b));setBg(st.theme);draw()});
+// page background: the style's photo, blurred and drifting, plus a light particle layer (snow, stars, dust, sun motes)
+const FX={ice:{n:70,c:'255,255,255',sh:'rgba(40,70,110,.35)',r:[1.2,3.4],vx:[-.2,.2],vy:[.3,.9],a:[.6,.95],sway:1},
+dusk:{n:90,c:'255,240,220',r:[.5,1.7],vx:[-.03,.03],vy:[-.03,.03],a:[.3,1],tw:1},
+topo:{n:50,c:'120,80,50',r:[1,2.4],vx:[.12,.4],vy:[-.12,.06],a:[.2,.55],tw:1},
+sunrise:{n:55,c:'236,150,50',sh:'rgba(255,190,90,.9)',r:[1,3],vx:[-.1,.1],vy:[-.45,-.12],a:[.35,.85],tw:1}};
+const fx=$('fx'),fc=fx.getContext('2d'),still=matchMedia('(prefers-reduced-motion: reduce)').matches;let P=[],FC,dpr=1,layer=0;
+const rnd=a=>a[0]+Math.random()*(a[1]-a[0]);
+function fxSize(){dpr=Math.min(2,devicePixelRatio||1);if(!fx.width)P.forEach(q=>{q.x=Math.random()*innerWidth;q.y=Math.random()*innerHeight});fx.width=innerWidth*dpr;fx.height=innerHeight*dpr}
+function setBg(t){document.documentElement.dataset.bg=t;const a=$(layer?'bgA':'bgB'),b=$(layer?'bgB':'bgA');a.style.backgroundImage=`url(bg/${t}.jpg)`;a.classList.add('on');b.classList.remove('on');layer^=1;
+FC=FX[t];P=Array.from({length:FC.n},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:rnd(FC.r),vx:rnd(FC.vx),vy:rnd(FC.vy),a:rnd(FC.a),p:Math.random()*6.3}))}
+function tick(){const w=innerWidth,h=innerHeight,c=FC;fc.setTransform(dpr,0,0,dpr,0,0);fc.clearRect(0,0,w,h);fc.shadowColor=c.sh||'transparent';fc.shadowBlur=c.sh?6:0;
+for(const q of P){q.p+=.012;q.x+=q.vx+(c.sway?Math.sin(q.p)*.35:0);q.y+=q.vy;if(q.y>h+8)q.y=-8;if(q.y<-8)q.y=h+8;if(q.x>w+8)q.x=-8;if(q.x<-8)q.x=w+8;
+fc.fillStyle=`rgba(${c.c},${c.tw?q.a*(.5+.5*Math.sin(q.p*2.6)):q.a})`;fc.beginPath();fc.arc(q.x,q.y,q.r,0,7);fc.fill()}requestAnimationFrame(tick)}
+fxSize();addEventListener('resize',fxSize);setBg(st.theme);if(!still)requestAnimationFrame(tick);
+// default quote: random pick when the field is left empty
+const setQuote=()=>{$('quote').placeholder=st.quote;draw()};
+$('shuffle').onclick=()=>{let n;do n=QUOTES[Math.random()*QUOTES.length|0];while(n===st.quote);st.quote=n;setQuote()};
+// domains: Enter, comma or picking a suggestion adds a pill (max 3)
+const fieldIn=$('field');
+function renderTags(){const list=$('tagList');list.textContent='';st.tags.forEach((t,i)=>{const s=document.createElement('span');s.className='tag';s.textContent=t;
+const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Remove '+t);b.innerHTML='<svg class="i"><use href="#i-x"/></svg>';b.onclick=()=>{st.tags.splice(i,1);renderTags();fieldIn.focus()};s.append(b);list.append(s)});
+fieldIn.hidden=st.tags.length>=3;fieldIn.placeholder=st.tags.length?'Add another':'Your domains (up to 3)';draw()}
+function addTag(){const v=fieldIn.value.replace(/,/g,'').trim();fieldIn.value='';if(v&&st.tags.length<3&&!st.tags.some(t=>t.toLowerCase()===v.toLowerCase()))st.tags.push(v);renderTags()}
+fieldIn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===','){e.preventDefault();addTag()}else if(e.key==='Backspace'&&!fieldIn.value&&st.tags.length){st.tags.pop();renderTags()}});
+fieldIn.addEventListener('input',e=>{if(fieldIn.value.includes(',')||e.inputType==='insertReplacementText'||!e.inputType)addTag()});
+fieldIn.addEventListener('blur',()=>{if(fieldIn.value.trim())addTag()});
+$('tagBox').addEventListener('click',e=>{if(e.target===e.currentTarget)fieldIn.focus()});
+// Enter in a text field shouldn't trigger the download
+$('f').addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.tagName==='INPUT')e.preventDefault()});
+function caption(){const t=st.tags,f=t.length>1?t.slice(0,-1).join(', ')+' and '+t.at(-1):t[0]||'';
+return `Base camp: unlocked. 🏔️
+
+I’m in the Top 500 of 10,000 teams at Hack in Hills ’26. Next stop: Manali, Himachal Pradesh, 20–21 November.
+${f?`I’ll be building in ${f}.\n`:''}
+Packing my laptop, warm layers and big ideas. See you at altitude.
+
+Powered by @TinyFish. Organised by @Builderbase, @Web3India and @Nexido.
+
+#hackathon #HackInHills #tinyfish`}
+['name','role','quote'].forEach(id=>$(id).addEventListener('input',draw));
+$('copy').onclick=async()=>{const t=caption();let ok=true;try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();ok=document.execCommand('copy');a.remove()}
+$('copyT').textContent=ok?'Copied':'Copy failed';$('status').textContent=ok?'Paste it on LinkedIn, then retype the @ before each name to tag them.':'Your browser blocked copying.';setTimeout(()=>$('copyT').textContent='Copy caption',2200)};
+$('f').onsubmit=e=>{e.preventDefault();draw();
+const slug=($('name').value.trim()||'pass').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'pass';
+try{cv.toBlob(blob=>{const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=`HackInHills26-${slug}.png`;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);$('status').textContent='Saved. Now post it.'},'image/png')}
+catch(err){$('status').textContent='Download blocked. Open the page from a web server, not as a local file.'}};
+document.fonts.ready.then(()=>Promise.all([`900 20px Montserrat`,`800 20px Montserrat`,`800 20px Manrope`,`700 20px Manrope`,`italic 400 20px Fraunces`,`500 20px "DM Mono"`,`600 20px Caveat`].map(f=>document.fonts.load(f)))).then(draw);
+setQuote();
+</script>
+</body></html>
