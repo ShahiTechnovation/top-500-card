@@ -48,23 +48,20 @@ for (const k in THEMES) {
   bg[k] = i;
 }
 
-// Initial edition from URL parameter (?edition=general or default top500)
-const urlParams = new URLSearchParams(window.location.search);
-const initialEdition = urlParams.get('edition') === 'general' ? 'general' : 'top500';
-
+// Top 500 Qualified Edition (Dedicated to flex.hackinhills.com)
 const st = {
-  edition: initialEdition,
+  edition: 'top500',
   photo: null,
   zoom: 1,
   ox: 0,
   oy: 0,
   theme: 'ice',
   tags: [],
-  quote: initialEdition === 'general' ? 'Built for the climb.' : 'The climb continues.'
+  quote: 'The climb continues.'
 };
 
 function getActiveConfig() {
-  return st.edition === 'general' ? GENERAL_CONFIG : TOP_500_CONFIG;
+  return TOP_500_CONFIG;
 }
 
 // Canvas layout coordinates
@@ -1113,47 +1110,6 @@ function downloadCard(e) {
 $('f').onsubmit = downloadCard;
 $('btnDownload').onclick = downloadCard;
 
-// Edition Tab Switcher (Top 500 Edition vs General Edition)
-function updateEditionUI() {
-  const isTop500 = st.edition === 'top500';
-  $('tabTop500').classList.toggle('active', isTop500);
-  $('tabTop500').setAttribute('aria-selected', isTop500);
-  $('tabGeneral').classList.toggle('active', !isTop500);
-  $('tabGeneral').setAttribute('aria-selected', !isTop500);
-
-  const uiBadge = $('uiBadge');
-  const uiStatusBadge = $('uiStatusBadge');
-  const journeyTrack = $('journeyTrack');
-  const uiMeta = $('uiMeta');
-
-  if (isTop500) {
-    uiBadge.hidden = false;
-    uiStatusBadge.hidden = false;
-    journeyTrack.hidden = false;
-    uiMeta.textContent = '10,000+ registrations · Top 500 teams · The climb continues 🏔️';
-  } else {
-    uiBadge.hidden = true;
-    uiStatusBadge.hidden = true;
-    journeyTrack.hidden = true;
-    uiMeta.textContent = 'Hack in Hills ’26 · Manali · 20–21 Nov · Built for the climb';
-  }
-
-  setQuote();
-  draw();
-}
-
-$('tabTop500').onclick = () => {
-  st.edition = 'top500';
-  st.quote = 'The climb continues.';
-  updateEditionUI();
-};
-
-$('tabGeneral').onclick = () => {
-  st.edition = 'general';
-  st.quote = 'Built for the climb.';
-  updateEditionUI();
-};
-
 // Ensure all Google Fonts are loaded before initial draw
 document.fonts.ready
   .then(() =>
@@ -1169,7 +1125,6 @@ document.fonts.ready
     ].map((f) => document.fonts.load(f)))
   )
   .then(() => {
-    updateEditionUI();
     draw();
   });
 
