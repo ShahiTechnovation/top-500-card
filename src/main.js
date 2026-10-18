@@ -1,5 +1,17 @@
-import { BRAND_CONFIG, SOCIAL_CONFIG, QUOTES, THEMES, BUILDER_PERSONAS } from './config.js';
-import { generateXCaption, generateLinkedInCaption, validateXCaption } from './captions.js';
+import {
+  BRAND_CONFIG,
+  TOP_500_CONFIG,
+  GENERAL_CONFIG,
+  SOCIAL_CONFIG,
+  QUOTES,
+  THEMES,
+  BUILDER_PERSONAS
+} from './config.js';
+import {
+  generateXCaption,
+  generateLinkedInCaption,
+  validateXCaption
+} from './captions.js';
 
 const $ = (id) => document.getElementById(id);
 const W = 1080, H = 1350;
@@ -36,15 +48,24 @@ for (const k in THEMES) {
   bg[k] = i;
 }
 
+// Initial edition from URL parameter (?edition=general or default top500)
+const urlParams = new URLSearchParams(window.location.search);
+const initialEdition = urlParams.get('edition') === 'general' ? 'general' : 'top500';
+
 const st = {
+  edition: initialEdition,
   photo: null,
   zoom: 1,
   ox: 0,
   oy: 0,
   theme: 'ice',
   tags: [],
-  quote: QUOTES[Math.floor(Math.random() * QUOTES.length)]
+  quote: initialEdition === 'general' ? 'Built for the climb.' : 'The climb continues.'
 };
+
+function getActiveConfig() {
+  return st.edition === 'general' ? GENERAL_CONFIG : TOP_500_CONFIG;
+}
 
 // Canvas layout coordinates
 const LX = 94, RX = 986;
@@ -100,8 +121,21 @@ function cover(im, fx) {
   return true;
 }
 
+/**
+ * Renders the top brand heading with strict hierarchy:
+ * Primary event branding: HACK IN HILLS '26
+ * Selection badge: TOP 500
+ * Main pass title: BUILDER PASS
+ * Qualification status: ROUND 1 QUALIFIED
+ */
 function title(T) {
-  const s = 96, y1 = 150, y2 = y1 + 86;
+  const cfg = getActiveConfig();
+  const isTop500 = st.edition === 'top500';
+
+  const s = isTop500 ? 76 : 96;
+  const y1 = isTop500 ? 142 : 150;
+  const y2 = isTop500 ? y1 + 70 : y1 + 86;
+
   x.fillStyle = T.top;
   x.font = `900 ${s}px ${F.head}`;
   x.textBaseline = 'alphabetic';
@@ -109,7 +143,7 @@ function title(T) {
   x.fillText('H', cx, y1);
   cx += x.measureText('H').width + 2;
 
-  // Mountain peak A
+  // Mountain peak 'A' with snow cap
   const wA = x.measureText('A').width;
   const cap = s * 0.72;
   const ax = cx;
@@ -147,49 +181,131 @@ function title(T) {
   x.fillText('IN HILLS', LX - 4, y2);
   const w2 = LX - 4 + x.measureText('IN HILLS').width;
 
-  const nx = Math.max(w1, w2) + 14;
+  const nx = Math.max(w1, w2) + 8;
   x.fillStyle = T.num;
-  x.font = `900 126px ${F.head}`;
-  x.fillText('’26', nx, y1 + 30);
+  const numSize = isTop500 ? 94 : 126;
+  x.font = `900 ${numSize}px ${F.head}`;
+  x.fillText('’26', nx, y1 + (isTop500 ? 18 : 30));
   const ne = nx + x.measureText('’26').width;
 
+  // Left subhead
   x.fillStyle = T.top;
-  x.font = `500 18px ${F.mono}`;
-  spaced(BRAND_CONFIG.location, LX, y2 + 40, 6);
+  x.font = `600 15px ${F.mono}`;
+  spaced(cfg.location, LX, y2 + 34, 4.5);
 
-  // BUILDER PASS Pill Badge
-  x.font = `500 20px ${F.mono}`;
-  const pw = spaced(BRAND_CONFIG.passType, -9999, 0, 5) + 52;
-  const px = RX + 20 - pw;
-  x.strokeStyle = T.top;
-  x.lineWidth = 3;
-  x.beginPath();
-  x.roundRect(px, 74, pw, 54, 27);
-  x.stroke();
-  x.textBaseline = 'middle';
-  spaced(BRAND_CONFIG.passType, px + pw / 2, 102, 5, 'center');
-  x.textBaseline = 'alphabetic';
+  if (isTop500) {
+    /* ---------------------------------------------------------------------- */
+    /* TOP 500 BUILDER PASS IDENTITY LOCKUP (Right Column)                    */
+    /* Hierarchy: TOP 500 -> BUILDER PASS -> ROUND 1 QUALIFIED                */
+    /* ---------------------------------------------------------------------- */
+    const blockRight = RX + 10;
 
-  // Coordinates and pin
-  x.font = `500 18px ${F.mono}`;
-  const cw = spaced(BRAND_CONFIG.coordinates, RX + 10, 166, 2, 'right');
-  pin(RX + 10 - cw - 22, 160, T.top);
+    // 1. Selection Badge: TOP 500 (Premium achievement badge)
+    const badgeW = 156, badgeH = 32, badgeY = 62;
+    const badgeX = blockRight - badgeW;
 
-  // Handwritten note: ideas climb higher.
-  x.save();
-  x.translate(ne + 26, 232);
-  x.rotate(-0.22);
-  x.fillStyle = T.top;
-  x.font = `600 34px ${F.hand}`;
-  BRAND_CONFIG.handwrittenNote.forEach((t, i) => x.fillText(t, i * 12, i * 30));
-  x.strokeStyle = T.top;
-  x.lineWidth = 2.5;
-  x.lineCap = 'round';
-  x.beginPath();
-  x.moveTo(20, 82);
-  x.quadraticCurveTo(56, 71, 96, 76);
-  x.stroke();
-  x.restore();
+    x.save();
+    x.fillStyle = T.acc;
+    x.globalAlpha = 0.16;
+    x.beginPath();
+    x.roundRect(badgeX, badgeY, badgeW, badgeH, 16);
+    x.fill();
+    x.globalAlpha = 1;
+
+    x.strokeStyle = T.acc;
+    x.lineWidth = 2;
+    x.beginPath();
+    x.roundRect(badgeX, badgeY, badgeW, badgeH, 16);
+    x.stroke();
+
+    x.fillStyle = T.acc;
+    x.font = `900 14px ${F.head}`;
+    x.textBaseline = 'middle';
+    spaced('★  TOP 500  ★', badgeX + badgeW / 2, badgeY + badgeH / 2, 2.5, 'center');
+    x.restore();
+
+    // 2. Main Pass Title: BUILDER PASS (Bold, highly visible, primary identity)
+    x.fillStyle = T.top;
+    x.font = `900 38px ${F.head}`;
+    x.textBaseline = 'alphabetic';
+    spaced('BUILDER PASS', blockRight, 136, 1.2, 'right');
+
+    // 3. Qualification Status: ROUND 1 QUALIFIED (Status badge)
+    const statW = 236, statH = 30, statY = 152;
+    const statX = blockRight - statW;
+
+    x.save();
+    x.fillStyle = '#10B981';
+    x.globalAlpha = 0.16;
+    x.beginPath();
+    x.roundRect(statX, statY, statW, statH, 15);
+    x.fill();
+    x.globalAlpha = 1;
+
+    x.strokeStyle = '#10B981';
+    x.lineWidth = 1.75;
+    x.beginPath();
+    x.roundRect(statX, statY, statW, statH, 15);
+    x.stroke();
+
+    // Status dot
+    x.fillStyle = '#10B981';
+    x.beginPath();
+    x.arc(statX + 16, statY + statH / 2, 4, 0, 7);
+    x.fill();
+
+    // Status text
+    x.fillStyle = T.top;
+    x.font = `800 12px ${F.mono}`;
+    x.textBaseline = 'middle';
+    spaced('ROUND 1 QUALIFIED', statX + 28, statY + statH / 2, 2);
+    x.restore();
+
+    // 4. Upcoming Finals & Coordinates info
+    x.save();
+    x.fillStyle = T.top;
+    x.globalAlpha = 0.78;
+    x.font = `600 13px ${F.mono}`;
+    spaced('UPCOMING FINALS · 20–21 NOV', blockRight, 214, 1.8, 'right');
+    const cw = spaced(cfg.coordinates, blockRight, 238, 1.8, 'right');
+    pin(blockRight - cw - 18, 232, T.top);
+    x.restore();
+
+  } else {
+    /* ---------------------------------------------------------------------- */
+    /* GENERAL BUILDER PASS (Preserved)                                       */
+    /* ---------------------------------------------------------------------- */
+    x.font = `500 20px ${F.mono}`;
+    const pw = spaced(cfg.passType, -9999, 0, 5) + 52;
+    const px = RX + 20 - pw;
+    x.strokeStyle = T.top;
+    x.lineWidth = 3;
+    x.beginPath();
+    x.roundRect(px, 74, pw, 54, 27);
+    x.stroke();
+    x.textBaseline = 'middle';
+    spaced(cfg.passType, px + pw / 2, 102, 5, 'center');
+    x.textBaseline = 'alphabetic';
+
+    x.font = `500 18px ${F.mono}`;
+    const cw = spaced(cfg.coordinates, RX + 10, 166, 2, 'right');
+    pin(RX + 10 - cw - 22, 160, T.top);
+
+    x.save();
+    x.translate(ne + 26, 232);
+    x.rotate(-0.22);
+    x.fillStyle = T.top;
+    x.font = `600 34px ${F.hand}`;
+    cfg.handwrittenNote.forEach((t, i) => x.fillText(t, i * 12, i * 30));
+    x.strokeStyle = T.top;
+    x.lineWidth = 2.5;
+    x.lineCap = 'round';
+    x.beginPath();
+    x.moveTo(20, 82);
+    x.quadraticCurveTo(56, 71, 96, 76);
+    x.stroke();
+    x.restore();
+  }
 }
 
 function pin(X, Y, c) {
@@ -205,7 +321,11 @@ function pin(X, Y, c) {
   x.stroke();
 }
 
+/**
+ * Polaroid element with photo, tape, and handwritten caption
+ */
 function polaroid() {
+  const cfg = getActiveConfig();
   x.save();
   x.translate(PO.cx, PO.cy);
   x.rotate(PO.rot);
@@ -258,19 +378,19 @@ function polaroid() {
     x.stroke();
 
     x.fillStyle = '#7A8796';
-    x.font = `500 20px ${F.mono}`;
+    x.font = `600 20px ${F.mono}`;
     spaced('ADD YOUR PHOTO', cx, cy + 128, 3, 'center');
   }
   x.restore();
 
-  // Photo handwritten caption: Built for the climb.
-  x.fillStyle = '#2A2A2A';
+  // Polaroid handwritten caption: "Base camp cleared! 🏔️" (Section 2)
+  x.fillStyle = '#222222';
   x.font = `600 42px ${F.hand}`;
   x.textAlign = 'center';
-  x.fillText(BRAND_CONFIG.photoCaption, 0, h / 2 - mb / 2 + 16);
+  x.fillText(cfg.photoCaption, 0, h / 2 - mb / 2 + 16);
   x.textAlign = 'left';
 
-  // Tape effect
+  // Realistic tape overlay
   x.save();
   x.translate(-w / 2 + 40, -h / 2 + 4);
   x.rotate(-0.55);
@@ -281,7 +401,13 @@ function polaroid() {
   x.restore();
 }
 
+/**
+ * Circular qualification stamp:
+ * Top 500 Edition: "TOP 500 / ROUND 1 QUALIFIED" (Section 2)
+ * General Edition: "HIH '26 / BUILDER"
+ */
 function stamp(cx, cy, r, T) {
+  const isTop500 = st.edition === 'top500';
   x.save();
   x.translate(cx, cy);
   x.rotate(0.18);
@@ -313,21 +439,32 @@ function stamp(cx, cy, r, T) {
 
   // Mountain peak stamp emblem
   x.beginPath();
-  x.moveTo(-20, -18);
-  x.lineTo(-7, -34);
-  x.lineTo(0, -26);
-  x.lineTo(7, -32);
-  x.lineTo(20, -18);
+  x.moveTo(-20, -22);
+  x.lineTo(-7, -36);
+  x.lineTo(0, -29);
+  x.lineTo(7, -35);
+  x.lineTo(20, -22);
   x.stroke();
 
-  // Stamp typography: HIH '26 BUILDER
-  x.font = `900 23px ${F.head}`;
-  x.fillText("HIH '26", 0, -2);
-  x.font = `800 13px ${F.mono}`;
-  spaced('BUILDER', 0, 19, 2.5, 'center');
+  if (isTop500) {
+    // Top 500 Stamp Typography
+    x.font = `900 25px ${F.head}`;
+    x.fillText('TOP 500', 0, -3);
+
+    x.font = `800 12.5px ${F.mono}`;
+    spaced('ROUND 1', 0, 16, 2, 'center');
+    x.font = `800 11.5px ${F.mono}`;
+    spaced('QUALIFIED', 0, 31, 2, 'center');
+  } else {
+    // General Stamp Typography
+    x.font = `900 23px ${F.head}`;
+    x.fillText("HIH '26", 0, -2);
+    x.font = `800 13px ${F.mono}`;
+    spaced('BUILDER', 0, 19, 2.5, 'center');
+  }
 
   const arc = (t, top) => {
-    x.font = `600 12px ${F.mono}`;
+    x.font = `600 11.5px ${F.mono}`;
     const ch = [...t];
     const ws = ch.map((c) => x.measureText(c).width + 3);
     const tot = ws.reduce((a, b) => a + b, 0);
@@ -344,8 +481,8 @@ function stamp(cx, cy, r, T) {
     });
   };
 
-  arc('HACK IN HILLS ’26', true);
-  arc('HIH ’26 BUILDER', false);
+  arc("HACK IN HILLS '26", true);
+  arc(isTop500 ? 'ROUND 1 QUALIFIED' : 'HIH ’26 BUILDER', false);
   x.restore();
 }
 
@@ -418,7 +555,11 @@ function icon(k, X, Y, c) {
   x.restore();
 }
 
+/**
+ * Information card containing participant identity, domains, upcoming finals info, and quote
+ */
 function card(T) {
+  const cfg = getActiveConfig();
   x.save();
   cardPath();
   x.clip();
@@ -456,15 +597,15 @@ function card(T) {
 
   const L = LX + 6, CW = 548;
 
-  // Identity subtitle: HACK IN HILLS '26 · BUILDER
+  // Identity subtitle: "TOP 500 · HIH '26 BUILDER" (Section 2)
   x.fillStyle = T.mute;
-  x.font = `600 15px ${F.mono}`;
-  spaced(BRAND_CONFIG.footerIdentity, L, 966, 3.2);
+  x.font = `700 15px ${F.mono}`;
+  spaced(cfg.footerIdentity, L, 966, 3.2);
 
   // Participant Name
   const name = ($('name').value.trim() || 'YOUR NAME').toUpperCase();
   x.fillStyle = T.ink;
-  fit(name, `900 Spx ${F.head}`, 70, CW, 38);
+  fit(name, `900 Spx ${F.head}`, 70, CW, 36);
   x.fillText(name, L - 3, 1028);
 
   // Role or College (optional)
@@ -503,7 +644,7 @@ function card(T) {
     tx += w + 10;
   });
 
-  // Right column: dates & base camp
+  // Right column: Upcoming Finals & destination information
   const vx = L + CW + 26;
   x.strokeStyle = T.ink;
   x.globalAlpha = 0.15;
@@ -515,25 +656,28 @@ function card(T) {
   x.globalAlpha = 1;
 
   [
-    ['cal', 'DATES', BRAND_CONFIG.dates, 962],
-    ['mtn', 'BASE CAMP', BRAND_CONFIG.baseCamp, 1052]
+    ['cal', cfg.datesLabel, cfg.dates, 962],
+    ['mtn', cfg.baseCampLabel, cfg.baseCamp, 1052]
   ].forEach(([k, l, v, y]) => {
     icon(k, vx + 26, y, T.ink);
     x.fillStyle = T.mute;
-    x.font = `500 14px ${F.mono}`;
-    spaced(l, vx + 86, y + 12, 3.5);
+    x.font = `600 13.5px ${F.mono}`;
+    spaced(l, vx + 86, y + 12, 3);
     x.fillStyle = T.ink;
-    x.font = `800 25px ${F.sans}`;
+    x.font = `800 24px ${F.sans}`;
     x.fillText(v, vx + 86, y + 44);
   });
 
-  // Builder Quote
+  // Builder Quote / Tagline: "The climb continues."
   const q = ($('quote').value.trim() || st.quote).replace(/^["“]|["”]$/g, '');
   x.fillStyle = T.ink;
   x.font = `italic 400 31px ${F.serif}`;
   x.fillText(clip1(`“${q}”`, RX - L), L, 1168);
 }
 
+/**
+ * Sponsor rail with TinyFish, Google Developers, and OC branding preserved
+ */
 function rail() {
   const { y, h } = RAIL, L = CARD.x, w = CARD.w;
   x.shadowColor = 'rgba(0,0,0,.18)';
@@ -561,7 +705,7 @@ function rail() {
       x.stroke();
     }
     x.fillStyle = '#6B7380';
-    x.font = `500 13px ${F.mono}`;
+    x.font = `600 13px ${F.mono}`;
     spaced(t, cx, y + 28, 3.5, 'center');
     logo(k, cx, y + 66, mw, mh);
     sx += sw;
@@ -858,9 +1002,9 @@ async function copyToClipboard(text) {
   }
 }
 
-// Copy X Caption
+// Copy X Caption (Section 5 & 6)
 $('copyX').onclick = async () => {
-  const caption = generateXCaption({ domains: st.tags, includeDomain: true });
+  const caption = generateXCaption({ edition: st.edition, domains: st.tags, includeDomain: false });
   const validation = validateXCaption(caption);
 
   if (!validation.isValid) {
@@ -879,14 +1023,14 @@ $('copyX').onclick = async () => {
     $('status').textContent = 'Your browser blocked copying. Please copy manually.';
   }
   setTimeout(() => {
-    copyXT.textContent = 'Copy X caption';
+    copyXT.textContent = 'Copy X Caption';
     $('copyX').classList.remove('copied');
   }, 2400);
 };
 
-// Copy LinkedIn Caption
+// Copy LinkedIn Caption (Section 5 & 7)
 $('copyLi').onclick = async () => {
-  const caption = generateLinkedInCaption({ domains: st.tags });
+  const caption = generateLinkedInCaption({ edition: st.edition, domains: st.tags, includeDomain: false });
   const ok = await copyToClipboard(caption);
   const copyLiT = $('copyLiT');
   if (ok) {
@@ -898,42 +1042,116 @@ $('copyLi').onclick = async () => {
     $('status').textContent = 'Your browser blocked copying. Please copy manually.';
   }
   setTimeout(() => {
-    copyLiT.textContent = 'Copy LinkedIn caption';
+    copyLiT.textContent = 'Copy LinkedIn Caption';
     $('copyLi').classList.remove('copied');
   }, 2400);
 };
 
-// Pass Download Handler
-$('f').onsubmit = (e) => {
-  e.preventDefault();
+// Pass Download Handler — Ensures strict .png extension across all browsers
+function downloadCard(e) {
+  if (e) e.preventDefault();
   draw();
   const rawName = $('name').value.trim();
   const slug = rawName
     ? rawName.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '')
-    : 'Pass';
+    : 'Builder';
+
+  const isTop500 = st.edition === 'top500';
+  const filename = isTop500
+    ? `HIH26-Top500-BuilderPass-${slug}.png`
+    : `HIH26-Builder-Pass-${slug}.png`;
 
   try {
-    cv.toBlob(
-      (blob) => {
-        if (!blob) {
-          $('status').textContent = 'Failed to generate image file. Please try again.';
-          return;
-        }
-        const u = URL.createObjectURL(blob);
-        const l = document.createElement('a');
-        l.href = u;
-        l.download = `HIH26-Builder-Pass-${slug}.png`;
-        document.body.appendChild(l);
-        l.click();
-        l.remove();
-        setTimeout(() => URL.revokeObjectURL(u), 4000);
-        $('status').textContent = 'Pass downloaded! Built for the climb. 🏔️';
-      },
-      'image/png'
-    );
-  } catch {
-    $('status').textContent = 'Download blocked. Open the page from a web server, not as a local file.';
+    // Synchronous dataURL download keeps transient user gesture active so browser honors filename and .png extension
+    const dataUrl = cv.toDataURL('image/png', 1.0);
+    const l = document.createElement('a');
+    l.style.display = 'none';
+    l.download = filename;
+    l.setAttribute('download', filename);
+    l.href = dataUrl;
+    document.body.appendChild(l);
+    l.click();
+    setTimeout(() => l.remove(), 2000);
+
+    $('status').textContent = isTop500
+      ? 'Top 500 Builder Pass downloaded! The climb continues. 🏔️'
+      : 'Pass downloaded! Built for the climb. 🏔️';
+  } catch (err) {
+    if (cv.toBlob) {
+      cv.toBlob(
+        (blob) => {
+          if (!blob) {
+            $('status').textContent = 'Failed to generate image file. Please try again.';
+            return;
+          }
+          const file = new File([blob], filename, { type: 'image/png' });
+          const u = URL.createObjectURL(file);
+          const l = document.createElement('a');
+          l.style.display = 'none';
+          l.download = filename;
+          l.setAttribute('download', filename);
+          l.href = u;
+          document.body.appendChild(l);
+          l.click();
+          setTimeout(() => {
+            l.remove();
+            URL.revokeObjectURL(u);
+          }, 4000);
+          $('status').textContent = isTop500
+            ? 'Top 500 Builder Pass downloaded! The climb continues. 🏔️'
+            : 'Pass downloaded! Built for the climb. 🏔️';
+        },
+        'image/png',
+        1.0
+      );
+    } else {
+      $('status').textContent = 'Download blocked. Open the page from a web server, not as a local file.';
+    }
   }
+}
+
+$('f').onsubmit = downloadCard;
+$('btnDownload').onclick = downloadCard;
+
+// Edition Tab Switcher (Top 500 Edition vs General Edition)
+function updateEditionUI() {
+  const isTop500 = st.edition === 'top500';
+  $('tabTop500').classList.toggle('active', isTop500);
+  $('tabTop500').setAttribute('aria-selected', isTop500);
+  $('tabGeneral').classList.toggle('active', !isTop500);
+  $('tabGeneral').setAttribute('aria-selected', !isTop500);
+
+  const uiBadge = $('uiBadge');
+  const uiStatusBadge = $('uiStatusBadge');
+  const journeyTrack = $('journeyTrack');
+  const uiMeta = $('uiMeta');
+
+  if (isTop500) {
+    uiBadge.hidden = false;
+    uiStatusBadge.hidden = false;
+    journeyTrack.hidden = false;
+    uiMeta.textContent = '10,000+ registrations · Top 500 teams · The climb continues 🏔️';
+  } else {
+    uiBadge.hidden = true;
+    uiStatusBadge.hidden = true;
+    journeyTrack.hidden = true;
+    uiMeta.textContent = 'Hack in Hills ’26 · Manali · 20–21 Nov · Built for the climb';
+  }
+
+  setQuote();
+  draw();
+}
+
+$('tabTop500').onclick = () => {
+  st.edition = 'top500';
+  st.quote = 'The climb continues.';
+  updateEditionUI();
+};
+
+$('tabGeneral').onclick = () => {
+  st.edition = 'general';
+  st.quote = 'Built for the climb.';
+  updateEditionUI();
 };
 
 // Ensure all Google Fonts are loaded before initial draw
@@ -946,9 +1164,13 @@ document.fonts.ready
       '700 20px Manrope',
       'italic 400 20px Fraunces',
       '500 20px "DM Mono"',
+      '600 20px "DM Mono"',
       '600 20px Caveat'
     ].map((f) => document.fonts.load(f)))
   )
-  .then(() => draw());
+  .then(() => {
+    updateEditionUI();
+    draw();
+  });
 
 setQuote();

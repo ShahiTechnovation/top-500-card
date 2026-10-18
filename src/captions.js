@@ -67,13 +67,104 @@ export function validateXCaption(text) {
 }
 
 /**
- * Generates the official X caption.
+ * Generates the official Top 500 Builder Pass X caption.
  * Strictly 280 characters or fewer.
  */
-export function generateXCaption(options = {}) {
+export function generateTop500XCaption(options = {}) {
   const { domains = [], includeDomain = false } = options;
 
-  // Official default caption strictly adhering to prompt specification
+  const defaultCaption = `Base camp: cleared. 🏔️
+
+I'm in the Top 500 at Hack in Hills '26!
+Round 1 done. The climb continues. ⛰️
+
+Powered by @Tiny_Fish
+Organised by @theBuilder_base, @Web3indiaHQ & @nexido_official
+
+#HIH26`;
+
+  if (includeDomain && Array.isArray(domains) && domains.length > 0) {
+    const domainStr = domains[0];
+    const candidate = `Base camp: cleared. 🏔️
+
+I'm in the Top 500 at Hack in Hills '26!
+Building in ${domainStr}.
+Round 1 done. The climb continues. ⛰️
+
+Powered by @Tiny_Fish
+Organised by @theBuilder_base, @Web3indiaHQ & @nexido_official
+
+#HIH26`;
+
+    if (calculateXLength(candidate) <= SOCIAL_CONFIG.x.charLimit) {
+      return candidate;
+    }
+  }
+
+  return defaultCaption;
+}
+
+/**
+ * Generates the official Top 500 Builder Pass LinkedIn caption.
+ * Highlights Round 1 qualification, Top 500 milestone, and builder community.
+ */
+export function generateTop500LinkedInCaption(options = {}) {
+  const { domains = [], includeDomain = false } = options;
+  const domainText = Array.isArray(domains) && domains.length > 0
+    ? (domains.length > 1 ? domains.slice(0, -1).join(', ') + ' and ' + domains.at(-1) : domains[0])
+    : '';
+
+  const domainSentence = (includeDomain && domainText)
+    ? `\nI’ll be building in ${domainText}.\n`
+    : '';
+
+  if (domainSentence) {
+    return `Base camp: cleared. 🏔️
+
+10,000+ registrations. Just 500 teams made the cut.
+And I'm proud to be among them! 🚀
+
+Officially qualified for Round 2 of Hack in Hills '26.${domainSentence}
+From thousands of builders across the country to the next stage of the climb, this journey is getting real.
+
+The next checkpoint? Round 2.
+The ultimate destination? Manali, Himachal Pradesh. ⛰️
+
+One step closer. A lot more to build.
+The climb continues. 🏔️
+
+${SOCIAL_CONFIG.linkedIn.attribution}
+
+${SOCIAL_CONFIG.linkedIn.hashtags.join(' ')}`;
+  }
+
+  return `Base camp: cleared. 🏔️
+
+10,000+ registrations. Just 500 teams made the cut.
+And I'm proud to be among them! 🚀
+
+Officially qualified for Round 2 of Hack in Hills '26.
+
+From thousands of builders across the country to the next stage of the climb, this journey is getting real.
+
+The next checkpoint? Round 2.
+The ultimate destination? Manali, Himachal Pradesh. ⛰️
+
+One step closer. A lot more to build.
+The climb continues. 🏔️
+
+${SOCIAL_CONFIG.linkedIn.attribution}
+
+${SOCIAL_CONFIG.linkedIn.hashtags.join(' ')}`;
+}
+
+/**
+ * Generates the General HIH '26 Builder Pass X caption (preserved).
+ */
+export function generateGeneralXCaption(options = {}) {
+  const { domains = [], includeDomain = false } = options;
+  const hashtags = SOCIAL_CONFIG.x.generalHashtags || ['@HackInHills', '#HIH26'];
+
   const baseCaption = `Base camp: unlocked. 🏔️
 
 I'm part of Hack in Hills '26!
@@ -82,7 +173,7 @@ Built for the climb. ⛰️
 
 ${SOCIAL_CONFIG.x.attribution}
 
-${SOCIAL_CONFIG.x.hashtags.join(' ')}`;
+${hashtags.join(' ')}`;
 
   if (includeDomain && Array.isArray(domains) && domains.length > 0) {
     const domainStr = domains[0];
@@ -94,7 +185,7 @@ Built for the climb. ⛰️
 
 ${SOCIAL_CONFIG.x.attribution}
 
-${SOCIAL_CONFIG.x.hashtags.join(' ')}`;
+${hashtags.join(' ')}`;
 
     if (calculateXLength(candidate) <= SOCIAL_CONFIG.x.charLimit) {
       return candidate;
@@ -105,9 +196,9 @@ ${SOCIAL_CONFIG.x.hashtags.join(' ')}`;
 }
 
 /**
- * Generates the official LinkedIn caption with builder community storytelling.
+ * Generates the General HIH '26 Builder Pass LinkedIn caption (preserved).
  */
-export function generateLinkedInCaption(options = {}) {
+export function generateGeneralLinkedInCaption(options = {}) {
   const { domains = [] } = options;
   const domainText = Array.isArray(domains) && domains.length > 0
     ? (domains.length > 1 ? domains.slice(0, -1).join(', ') + ' and ' + domains.at(-1) : domains[0])
@@ -132,4 +223,24 @@ Built for the climb. ⛰️
 ${SOCIAL_CONFIG.linkedIn.attribution}
 
 ${SOCIAL_CONFIG.linkedIn.hashtags.join(' ')}`;
+}
+
+/**
+ * Generates the official X caption based on edition (defaults to Top 500).
+ */
+export function generateXCaption(options = {}) {
+  if (options.edition === 'general') {
+    return generateGeneralXCaption(options);
+  }
+  return generateTop500XCaption(options);
+}
+
+/**
+ * Generates the official LinkedIn caption based on edition (defaults to Top 500).
+ */
+export function generateLinkedInCaption(options = {}) {
+  if (options.edition === 'general') {
+    return generateGeneralLinkedInCaption(options);
+  }
+  return generateTop500LinkedInCaption(options);
 }

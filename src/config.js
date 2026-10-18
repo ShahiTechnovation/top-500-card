@@ -2,19 +2,55 @@
  * Hack in Hills '26 — Brand and Social Configuration
  */
 
-export const BRAND_CONFIG = {
-  eventName: "Hack in Hills ’26",
-  edition: "HIH '26",
-  tagline: 'Built for the climb.',
+export const TOP_500_CONFIG = {
+  eventName: "HACK IN HILLS '26",
+  editionBadge: 'TOP 500',
   passType: 'BUILDER PASS',
-  footerIdentity: "HACK IN HILLS '26 · BUILDER",
+  statusBadge: 'ROUND 1 QUALIFIED',
+  stampHeading: "HACK IN HILLS '26",
+  stampCenterTop: 'TOP 500',
+  stampCenterBottom: 'ROUND 1 QUALIFIED',
+  photoCaption: 'Base camp cleared! 🏔️',
+  footerIdentity: "TOP 500 · HIH '26 BUILDER",
+  tagline: 'The climb continues.',
+  datesLabel: 'UPCOMING FINALS',
+  dates: '20–21 NOV 2026',
+  baseCampLabel: 'DESTINATION',
+  baseCamp: 'MANALI · 2,050 M',
   location: 'MANALI · HIMACHAL PRADESH',
   coordinates: '32.24°N  77.19°E',
-  dates: '20–21 NOV 2026',
-  baseCamp: 'MANALI · 2,050 M',
-  handwrittenNote: ['ideas', 'climb', 'higher.'],
-  photoCaption: 'Built for the climb.'
+  filePrefix: 'HIH26-Top500-BuilderPass',
+  handwrittenNote: ['base camp', 'cleared.', 'climb on.'],
+  progression: {
+    round1: 'QUALIFIED',
+    round2: 'UPCOMING',
+    finals: 'MANALI, HP'
+  }
 };
+
+export const GENERAL_CONFIG = {
+  eventName: "Hack in Hills ’26",
+  editionBadge: '',
+  passType: 'BUILDER PASS',
+  statusBadge: 'BUILDER',
+  stampHeading: "HACK IN HILLS ’26",
+  stampCenterTop: "HIH '26",
+  stampCenterBottom: 'BUILDER',
+  photoCaption: 'Built for the climb.',
+  footerIdentity: "HACK IN HILLS '26 · BUILDER",
+  tagline: 'Built for the climb.',
+  datesLabel: 'DATES',
+  dates: '20–21 NOV 2026',
+  baseCampLabel: 'BASE CAMP',
+  baseCamp: 'MANALI · 2,050 M',
+  location: 'MANALI · HIMACHAL PRADESH',
+  coordinates: '32.24°N  77.19°E',
+  filePrefix: 'HIH26-Builder-Pass',
+  handwrittenNote: ['ideas', 'climb', 'higher.'],
+  progression: null
+};
+
+export const BRAND_CONFIG = TOP_500_CONFIG;
 
 export const SOCIAL_CONFIG = {
   x: {
@@ -25,7 +61,8 @@ export const SOCIAL_CONFIG = {
       nexido: '@nexido_official'
     },
     attribution: 'Powered by @Tiny_Fish\nOrganised by @theBuilder_base, @Web3indiaHQ & @nexido_official',
-    hashtags: ['@HackInHills', '#HIH26'],
+    hashtags: ['#HIH26'],
+    generalHashtags: ['@HackInHills', '#HIH26'],
     charLimit: 280
   },
   linkedIn: {
@@ -36,11 +73,14 @@ export const SOCIAL_CONFIG = {
       nexido: '@Nexido'
     },
     attribution: 'Powered by @TinyFish. Organised by @Builderbase, @Web3India and @Nexido.',
-    hashtags: ['#HackInHills', '#HIH26', '#BuildInPublic']
+    hashtags: ['#HackInHills', '#HIH26', '#Hackathon', '#BuildInPublic']
   }
 };
 
 export const QUOTES = [
+  'The climb continues.',
+  'Base camp cleared! The climb continues. 🏔️',
+  '10,000+ registrations. Top 500 cleared. On to Round 2.',
   'Every summit starts with git init.',
   'Thin air, thick code.',
   'I climb in commits.',
